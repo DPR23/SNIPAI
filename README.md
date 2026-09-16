@@ -1,6 +1,6 @@
 # SnipAI: Intelligent Code Knowledge Base
 
-**Live Demo:** [Insert Your Vercel Link Here]
+**Live Demo:** [https://snipai-ebon.vercel.app](https://snipai-ebon.vercel.app)
 **Backend API:** [https://snipai.onrender.com](https://snipai.onrender.com)
 
 SnipAI is a full-stack MERN application designed with a minimalist, high-contrast monochrome interface. It allows developers to store, organize, and understand complex code snippets using Google's Generative AI models.
