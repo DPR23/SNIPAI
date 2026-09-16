@@ -16,7 +16,7 @@ router.post('/explain', auth, async (req, res) => {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
 
     const prompt = `You are an expert programming tutor. Please explain the following ${language || ''} code snippet clearly and concisely. Break down what it does, and if applicable, mention its time/space complexity or any potential edge cases.\n\nCode:\n${code}`;
 

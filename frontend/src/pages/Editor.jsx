@@ -71,7 +71,7 @@ export default function Editor() {
       setAiExplanation(res.data.explanation);
     } catch (err) {
       console.error(err);
-      alert('Failed to get AI explanation. Did you set the Gemini API key in backend/.env?');
+      alert('AI Error: ' + (err.response?.data?.error || 'Servers are busy right now.'));
     }
     setLoadingAI(false);
   };
