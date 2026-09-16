@@ -77,30 +77,30 @@ export default function Editor() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center gap-4 flex-1">
-          <button onClick={() => navigate('/')} className="text-gray-500 hover:text-gray-900">
-            <ArrowLeft className="w-5 h-5" />
+    <div className="max-w-6xl mx-auto flex flex-col h-[calc(100vh-8rem)] py-6">
+      <div className="flex justify-between items-center mb-8">
+        <div className="flex items-center gap-6 flex-1">
+          <button onClick={() => navigate('/')} className="text-gray-400 hover:text-black transition-colors">
+            <ArrowLeft className="w-6 h-6" />
           </button>
           <input
             type="text"
             placeholder="Snippet Title"
-            className="text-2xl font-bold bg-transparent border-none focus:outline-none focus:ring-0 placeholder-gray-300 w-1/2"
+            className="text-4xl font-semibold tracking-tight bg-transparent border-none focus:outline-none focus:ring-0 placeholder-gray-200 w-full"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {id && (
-            <button onClick={handleDelete} className="text-red-500 hover:text-red-700 p-2">
+            <button onClick={handleDelete} className="text-gray-400 hover:text-black p-2 transition-colors">
               <Trash2 className="w-5 h-5" />
             </button>
           )}
           <select 
             value={language} 
             onChange={(e) => setLanguage(e.target.value)}
-            className="border rounded p-2 text-sm bg-white outline-none"
+            className="bg-gray-50 border-none rounded-full px-4 py-2 text-sm font-medium text-black outline-none focus:ring-1 focus:ring-black"
           >
             <option value="javascript">JavaScript</option>
             <option value="python">Python</option>
@@ -109,24 +109,31 @@ export default function Editor() {
             <option value="java">Java</option>
             <option value="cpp">C++</option>
           </select>
-          <button onClick={handleSave} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition">
+          <button onClick={handleSave} className="flex items-center gap-2 bg-black text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">
             <Save className="w-4 h-4" /> Save
           </button>
         </div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-6">
         <input
           type="text"
-          placeholder="Tags (comma separated e.g. react, hooks, api)"
-          className="w-full border rounded p-2 text-sm outline-none focus:border-blue-500"
+          placeholder="Tags (comma separated e.g. react, api)"
+          className="w-full bg-gray-50 border-none rounded-2xl p-4 text-sm outline-none focus:bg-white focus:ring-1 focus:ring-black transition-all"
           value={tags}
           onChange={(e) => setTags(e.target.value)}
         />
       </div>
 
-      <div className="flex flex-1 gap-4 overflow-hidden">
-        <div className="w-2/3 border rounded overflow-hidden shadow-sm flex flex-col">
+      <div className="flex flex-1 gap-6 overflow-hidden">
+        <div className="w-2/3 rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col bg-[#1e1e1e]">
+          <div className="h-10 bg-[#2d2d2d] flex items-center px-6">
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+          </div>
           <MonacoEditor
             height="100%"
             language={language}
@@ -135,32 +142,35 @@ export default function Editor() {
             onChange={(value) => setCode(value)}
             options={{
               minimap: { enabled: false },
-              fontSize: 14,
+              fontSize: 15,
+              fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+              padding: { top: 20 }
             }}
           />
         </div>
-        <div className="w-1/3 flex flex-col bg-white border rounded shadow-sm overflow-hidden">
-          <div className="p-3 border-b bg-gray-50 flex justify-between items-center">
-            <span className="font-medium text-sm text-gray-700 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-purple-500" /> AI Tutor
+        
+        <div className="w-1/3 flex flex-col bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+          <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+            <span className="font-semibold text-lg text-black flex items-center gap-2">
+              <Sparkles className="w-5 h-5" /> Intelligence
             </span>
             <button 
               onClick={handleExplain}
               disabled={loadingAI}
-              className="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded hover:bg-purple-200 transition"
+              className="text-xs bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors font-medium disabled:opacity-50"
             >
-              {loadingAI ? 'Thinking...' : 'Explain Code'}
+              {loadingAI ? 'Analyzing...' : 'Explain Code'}
             </button>
           </div>
-          <div className="p-4 flex-1 overflow-y-auto bg-gray-50">
+          <div className="p-6 flex-1 overflow-y-auto">
             {aiExplanation ? (
-              <div className="prose prose-sm text-gray-700 whitespace-pre-wrap">
+              <div className="prose prose-sm text-gray-600 leading-relaxed whitespace-pre-wrap">
                 {aiExplanation}
               </div>
             ) : (
               <div className="h-full flex flex-col items-center justify-center text-gray-400 text-sm text-center px-4">
-                <Sparkles className="w-8 h-8 mb-2 opacity-50" />
-                <p>Click "Explain Code" to get a detailed breakdown of your snippet using Google Gemini.</p>
+                <Sparkles className="w-10 h-10 mb-4 opacity-20" />
+                <p className="max-w-[200px]">Tap analyze to generate an AI breakdown of your code structure.</p>
               </div>
             )}
           </div>

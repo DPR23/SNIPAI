@@ -13,29 +13,31 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-sm border-b">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-black/5">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
-              <Code2 className="w-8 h-8 text-blue-600" />
-              <span className="font-bold text-xl tracking-tight">SnipAI</span>
+              <div className="bg-black text-white p-1.5 rounded-lg">
+                <Code2 className="w-5 h-5" />
+              </div>
+              <span className="font-semibold text-xl tracking-tight text-black">SnipAI</span>
             </Link>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             {user ? (
               <>
-                <span className="text-sm text-gray-500">Hi, {user.username || 'User'}</span>
-                <Link to="/new" className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition">
+                <span className="text-sm font-medium text-gray-500 hidden sm:block">Hello, {user.username || 'User'}</span>
+                <Link to="/new" className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">
                   New Snippet
                 </Link>
-                <button onClick={handleLogout} className="text-gray-400 hover:text-gray-600 transition">
+                <button onClick={handleLogout} className="text-gray-400 hover:text-black transition-colors">
                   <LogOut className="w-5 h-5" />
                 </button>
               </>
             ) : (
-              <Link to="/login" className="text-gray-600 hover:text-gray-900 font-medium">
-                Sign in
+              <Link to="/login" className="text-sm font-medium text-black hover:text-gray-600 transition-colors">
+                Sign In
               </Link>
             )}
           </div>
