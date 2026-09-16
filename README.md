@@ -1,88 +1,54 @@
-#  SnipAI
-> A minimalist, AI-powered knowledge base for developers.
+# SnipAI: Intelligent Code Knowledge Base
 
-![SnipAI Banner](https://via.placeholder.com/1000x300/000000/FFFFFF?text=SnipAI+-+Code+Smarter)
+SnipAI is a full-stack MERN application designed with a minimalist, high-contrast monochrome interface. It allows developers to store, organize, and understand complex code snippets using Google's Generative AI models.
 
-SnipAI is a full-stack MERN application designed with a sleek, Apple-inspired monochrome interface. It allows developers to store, organize, and understand complex code snippets using Google's Gemini AI.
+## Project Architecture and Implementation
 
-## ✨ Features
-* **Minimalist UI/UX:** A distraction-free, high-contrast monochrome design with rounded corners and beautiful typography.
-* **Intelligent AI Tutor:** Integrated with Google Gemini to explain algorithms and break down complex logic.
-* **Monaco Editor:** Industry-standard code editing experience (powered by the same engine as VS Code).
-* **Robust Authentication:** Secure JWT-based login and registration.
-* **Lightning Fast Search:** Instantly filter snippets by title, tags, or programming language.
+### Frontend (React and Vite)
+- **State Management:** Utilized React Context API for global authentication state management.
+- **Routing:** Implemented React Router with protected routes to prevent unauthenticated access to the dashboard and editor.
+- **UI/UX Design:** Engineered a responsive, minimalist monochrome aesthetic using Tailwind CSS.
+- **Code Editor Integration:** Integrated @monaco-editor/react to provide an industry-standard editing experience with syntax highlighting.
 
-## 🛠️ Tech Stack
-* **Frontend:** React 18, Vite, Tailwind CSS v4, Lucide Icons, Monaco Editor.
-* **Backend:** Node.js, Express.js, JSON Web Tokens (JWT), Google Generative AI SDK.
-* **Database:** MongoDB, Mongoose.
+### Backend (Node.js and Express)
+- **RESTful API:** Developed a robust Express API with modular routing for authentication and snippet management.
+- **Authentication:** Secured user accounts using bcrypt for password hashing and JSON Web Tokens (JWT) for stateless session management.
+- **Database:** Designed Mongoose schemas with indexing for optimized query performance on MongoDB Atlas.
+- **AI Integration:** Implemented the @google/generative-ai SDK, specifically utilizing the gemini-flash-latest model to dynamically analyze and explain user code snippets. Included robust error handling for API rate limits and service unavailability.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-* Node.js (v18+)
-* MongoDB (Local or Atlas)
-* Google Gemini API Key
+- Node.js (v18+)
+- MongoDB Atlas Account
+- Google Gemini API Key
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/snipai.git
-   cd snipai
-   ```
-
-2. **Backend Setup**
+### Local Installation
+1. Clone the repository and navigate to the project directory.
+2. Initialize the backend:
    ```bash
    cd backend
    npm install
    ```
-   Create a `.env` file in the `backend` directory:
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://127.0.0.1:27017/snipai
-   JWT_SECRET=your_jwt_secret
+3. Create a .env file in the backend directory with the following variables:
+   ```
+   PORT=5001
+   MONGO_URI=your_mongodb_atlas_connection_string
+   JWT_SECRET=your_secure_jwt_secret
    GEMINI_API_KEY=your_gemini_api_key
    ```
-   Start the backend server:
+4. Start the backend server:
    ```bash
    node server.js
    ```
-
-3. **Frontend Setup**
-   Open a new terminal window:
+5. Initialize the frontend in a separate terminal:
    ```bash
    cd frontend
    npm install
    npm run dev
    ```
 
-## 🌐 Deployment Links
-* **Live Application:** `[Add your Vercel link here]`
-* **API Server:** `[Add your Render link here]`
-
-*(See deployment instructions below to generate these links)*
-
----
-
-## ☁️ How to Deploy
-
-### 1. Deploy the Backend (Render.com)
-1. Create a free account on [Render](https://render.com).
-2. Click **New +** -> **Web Service**.
-3. Connect your GitHub and select the `snipai` repository.
-4. Set the **Root Directory** to `backend`.
-5. Build Command: `npm install`
-6. Start Command: `node server.js`
-7. In the **Environment Variables** section, add your `MONGO_URI` (must be a MongoDB Atlas cloud URI, not localhost), `JWT_SECRET`, and `GEMINI_API_KEY`.
-8. Click **Create Web Service**. 
-
-### 2. Deploy the Frontend (Vercel.com)
-1. Create a free account on [Vercel](https://vercel.com).
-2. Click **Add New** -> **Project**.
-3. Import your `snipai` GitHub repository.
-4. Edit the **Root Directory** to be `frontend`.
-5. Vercel will automatically detect it is a Vite/React project.
-6. Click **Deploy**.
-
-Once both are deployed, you just need to update the API fetch URLs in your React code from `http://localhost:5000` to your new Render URL!
+## Deployment Architecture
+- **Frontend Hosting:** Deployed via Vercel for optimized global edge delivery.
+- **Backend API:** Hosted on Render as a Node.js web service.
+- **Database:** Hosted on MongoDB Atlas cloud infrastructure.
