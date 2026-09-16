@@ -10,7 +10,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchSnippets = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/snippets');
+        const res = await axios.get('https://snipai.onrender.com/api/snippets');
         setSnippets(res.data);
       } catch (err) {
         console.error('Failed to fetch snippets', err);

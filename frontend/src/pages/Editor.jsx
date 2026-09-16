@@ -18,7 +18,7 @@ export default function Editor() {
     if (id) {
       const fetchSnippet = async () => {
         try {
-          const res = await axios.get(`http://localhost:5001/api/snippets/${id}`);
+          const res = await axios.get(`https://snipai.onrender.com/api/snippets/${id}`);
           setTitle(res.data.title);
           setLanguage(res.data.language);
           setCode(res.data.code);
@@ -43,9 +43,9 @@ export default function Editor() {
 
     try {
       if (id) {
-        await axios.put(`http://localhost:5001/api/snippets/${id}`, payload);
+        await axios.put(`https://snipai.onrender.com/api/snippets/${id}`, payload);
       } else {
-        await axios.post('http://localhost:5001/api/snippets', payload);
+        await axios.post('https://snipai.onrender.com/api/snippets', payload);
       }
       navigate('/');
     } catch (err) {
@@ -56,7 +56,7 @@ export default function Editor() {
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this snippet?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/snippets/${id}`);
+        await axios.delete(`https://snipai.onrender.com/api/snippets/${id}`);
         navigate('/');
       } catch (err) {
         console.error(err);
@@ -67,7 +67,7 @@ export default function Editor() {
   const handleExplain = async () => {
     setLoadingAI(true);
     try {
-      const res = await axios.post('http://localhost:5001/api/ai/explain', { code, language });
+      const res = await axios.post('https://snipai.onrender.com/api/ai/explain', { code, language });
       setAiExplanation(res.data.explanation);
     } catch (err) {
       console.error(err);
